@@ -2,7 +2,7 @@
 import { Router } from "express";
 
 // Local imports
-import * as MathController from "../controllers/math.controller";
+import * as MathController from "../controllers/math.controller.js";
 
 const router = Router();
 

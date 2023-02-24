@@ -15,8 +15,6 @@ const fibonacci = (n) => {
     j = a + b;
     a = b;
     b = j;
-
-    console.log("Fibonacci iteration: ", i, ",  result: ", b);
   }
 
   return b;
@@ -24,19 +22,11 @@ const fibonacci = (n) => {
 
 process.on("message", (msg) => {
   try {
-    console.log("msg received by Fibonacci child", msg);
     const nthTerm = Number(msg.n);
-
-    console.log("nthTerm received by Fibonacci child", nthTerm);
-
     const result = fibonacci(nthTerm);
-
-    console.log("result received by Fibonacci child", result);
-
-    process.send({ status: "success", payload: { n: nthTerm, result } });
+    process.send({ status: "success", payload: { n: nthTerm, sum: result } });
   } catch (error) {
-    console.error(error.message);
-    process.send({ status: "error", message: error.message });
+    process.send({ status: "error", error: error.message });
     process.exitCode = 1;
     process.exit();
   }

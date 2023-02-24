@@ -1,7 +1,7 @@
 // Global imports
 
 // Local imports
-import * as MathService from "../services/math.service";
+import * as MathService from "../services/math.service.js";
 
 export const getFibonacciNthTerm = async (req, res) => {
   const resultObject = {};
@@ -12,8 +12,15 @@ export const getFibonacciNthTerm = async (req, res) => {
   try {
     const result = await MathService.getFibonacciNthTerm(nthTerm);
 
-    resultObject.status = "success";
-    resultObject.result = result;
+    if (result.status === "success") {
+      resultObject.status = "success";
+      resultObject.result = result.payload;
+    } else {
+      resultObject.status = "error";
+      resultObject.error = result.error;
+
+      resultStatus = 400;
+    }
   } catch (error) {
     resultStatus = 500;
 
@@ -33,8 +40,15 @@ export const getFactorial = async (req, res) => {
   try {
     const result = await MathService.getFactorial(nthTerm);
 
-    resultObject.status = "success";
-    resultObject.result = result;
+    if (result.status === "success") {
+      resultObject.status = "success";
+      resultObject.result = result.payload;
+    } else {
+      resultStatus = 400;
+
+      resultObject.status = "error";
+      resultObject.result = result.error;
+    }
   } catch (error) {
     resultStatus = 500;
 
