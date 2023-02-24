@@ -1,9 +1,9 @@
 {
-  "name": "models",
+  "name": "workers",
   "version": "1.0.0",
   "description": "",
-  "main": "arithmethics.model.js",
   "type": "module",
+  "main": "factorial.worker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
